@@ -1,9 +1,6 @@
 import io.qameta.allure.Description;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.CategoryPage;
 import pages.HomePage;
 import pages.ProductCategoryPage;
@@ -31,12 +28,12 @@ public class TestFilter extends BaseTest {
         productPage = new ProductPage(driver);
     }
 
-    @AfterMethod
+    @AfterTest
     public void driverDestroy() {
         tearDown();
     }
 
-    @Test
+    @Test(priority = 1)
     @Description("Select the first product on the filter and check the compliance by name")
     public void selectProductByName() {
         homePage.openHome().selectTypeMenu("Электроника");
@@ -46,7 +43,7 @@ public class TestFilter extends BaseTest {
         Assert.assertTrue(names.stream().anyMatch(name -> name.contains("LG") || name.contains("Samsung")));
     }
 
-    @Test
+    @Test(priority = 2)
     @Description("Select the first product by filter and check the price match")
     public void checkByNameAndPrice() {
         homePage.openHome().selectTypeMenu("Электроника");

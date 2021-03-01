@@ -49,7 +49,7 @@ public class CategoryPage extends PageObjectCreator {
     public void clickToSnippetTitle() {
         Actions action = new Actions(driver);
         action.moveToElement(titleList).build().perform();
-        titleList.click();
+        wait.until(ExpectedConditions.visibilityOf(titleList)).click();
         String currTabHandle = driver.getWindowHandle();
         String newTabHandle = driver.getWindowHandles()
                 .stream()

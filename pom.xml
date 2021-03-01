@@ -24,7 +24,7 @@
             <version>2.20</version>
             <configuration>
                 <suiteXmlFiles>
-                    <file>src/test/resources/igaStavokSuite.xml</file>
+                    <file>src/test/resources/ligaStavokSuite.xml</file>
                 </suiteXmlFiles>
                 <properties>
                     <property>
@@ -87,7 +87,7 @@
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit4</artifactId>
+            <artifactId>allure-testng</artifactId>
             <version>2.13.5</version>
         </dependency>
         <dependency>

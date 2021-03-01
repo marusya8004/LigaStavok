@@ -29,7 +29,6 @@ public class ProductPage extends PageObjectCreator {
         Allure.addAttachment("ProductBrand", new ByteArrayInputStream(((TakesScreenshot) driver)
                 .getScreenshotAs(OutputType.BYTES)));
         return wait.until(ExpectedConditions.visibilityOf(productName)).getText();
-
     }
 
     @Step("The product`s price displayed")
