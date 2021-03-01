@@ -14,46 +14,46 @@ public class ListenerITest implements ITestListener, LifecycleListener {
     @Override
     public void onTestStart(ITestResult result) {
         log.always();
-        System.out.println("Now starting test " + result.getName());
+        log.info("Now starting test " + result.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.println("Successfully completed test: " + result.getName());
+        log.info("Successfully completed test: " + result.getName());
         MultiToneChrome.getInstance().destroy();
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         log.always();
-        System.out.println("*** execution of: " + result.getMethod().getMethodName() + " failed!");
+        log.info("*** execution of: " + result.getMethod().getMethodName() + " failed!");
         MultiToneChrome.getInstance().destroy();
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         log.always();
-        System.out.println("Test Name: " + result.getName() + "skipped!");
+        log.info("Test Name: " + result.getName() + "skipped!");
         MultiToneChrome.getInstance().destroy();
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-        System.out.println("Test Name: " + result.getName() + " failed but within success percentage");
+        log.info("Test Name: " + result.getName() + " failed but within success percentage");
     }
 
     @Override
     public void onStart(ITestContext context) {
-        System.out.println("Test Name: " + context.getName() + " are starting.");
+        log.info("Test Name: " + context.getName() + " are starting.");
         ITestNGMethod[] methods = context.getAllTestMethods();
-        System.out.println("This methods will be executed in this test tag:");
+        log.info("This methods will be executed in this test tag:");
         for (ITestNGMethod method : methods)
-            System.out.println(method.getMethodName());
+            log.info(method.getMethodName());
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        System.out.println("Test  " + context.getName() + " on finish");
+        log.info("Test  " + context.getName() + " on finish");
         MultiToneChrome.getInstance().destroy();
     }
 }

@@ -14,7 +14,7 @@ public class BaseTest {
         return driver;
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterTest
     public void tearDown() {
         if (driver != null)
             driver.quit();

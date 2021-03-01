@@ -10,12 +10,12 @@ import java.util.List;
 
 
 public class TestFilter extends BaseTest {
-    HomePage homePage;
-    ProductCategoryPage productCategoryPage;
-    CategoryPage categoryPage;
-    ProductPage productPage;
+    private HomePage homePage;
+    private ProductCategoryPage productCategoryPage;
+    private CategoryPage categoryPage;
+    private ProductPage productPage;
 
-    @BeforeMethod
+    @BeforeClass
     public void openSite() {
         setUp().get("https://market.yandex.ru/");
     }
@@ -28,27 +28,19 @@ public class TestFilter extends BaseTest {
         productPage = new ProductPage(driver);
     }
 
-    @AfterTest
+    @AfterClass(alwaysRun = true)
     public void driverDestroy() {
         tearDown();
     }
 
-    @Test(priority = 1)
-    @Description("Select the first product on the filter and check the compliance by name")
-    public void selectProductByName() {
-        homePage.openHome().selectTypeMenu("Электроника");
-        productCategoryPage.selectInnerCategory("Телевизоры");
-        categoryPage.setPriceFrom("20000").selectBrand("Samsung").selectBrand("LG").clickToSnippetTitle();
-        List<String> names = List.of(productPage.getTextProductName());
-        Assert.assertTrue(names.stream().anyMatch(name -> name.contains("LG") || name.contains("Samsung")));
-    }
-
-    @Test(priority = 2)
+    @Test
     @Description("Select the first product by filter and check the price match")
     public void checkByNameAndPrice() {
         homePage.openHome().selectTypeMenu("Электроника");
         productCategoryPage.selectInnerCategory("Телевизоры");
         categoryPage.setPriceFrom("20000").selectBrand("Samsung").selectBrand("LG").clickToSnippetTitle();
+        List<String> names = List.of(productPage.getTextProductName());
+        Assert.assertTrue(names.stream().anyMatch(name -> name.contains("LG") || name.contains("Samsung")));
         List<Integer> prices = List.of(Integer.parseInt(productPage.getTextProductPrice().replaceAll(" ", "").substring(0, 5)));
         Assert.assertTrue(prices.stream().allMatch(price -> price > 20000 || price == 20000));
     }

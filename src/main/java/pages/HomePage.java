@@ -2,7 +2,6 @@ package pages;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,13 +9,12 @@ import org.testng.Assert;
 
 import java.io.ByteArrayInputStream;
 
-@Slf4j
 public class HomePage extends PageObjectCreator {
 
     @FindBy(xpath = "//div[@role='tablist']/child::div")
     WebElement categories;
 
-    @FindBy(xpath = "//div[@class='_7v6Uf-UYpr']")
+    @FindBy(xpath = "//div[@data-apiary-widget-name='@MarketNode/HeaderLogo']")
     WebElement logo;
 
     public HomePage(WebDriver driver) {

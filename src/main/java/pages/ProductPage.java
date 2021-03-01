@@ -2,7 +2,6 @@ package pages;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.ByteArrayInputStream;
 
-@Slf4j
 public class ProductPage extends PageObjectCreator {
     public ProductPage(WebDriver driver) {
         super(driver);

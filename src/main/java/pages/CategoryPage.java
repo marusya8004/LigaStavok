@@ -1,16 +1,14 @@
 package pages;
 
+import initialDriver.Waiter;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
-import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.ByteArrayInputStream;
-
-@Slf4j
 
 public class CategoryPage extends PageObjectCreator {
 
@@ -49,7 +47,8 @@ public class CategoryPage extends PageObjectCreator {
     public void clickToSnippetTitle() {
         Actions action = new Actions(driver);
         action.moveToElement(titleList).build().perform();
-        wait.until(ExpectedConditions.visibilityOf(titleList)).click();
+        Waiter.pause(5);
+        titleList.click();
         String currTabHandle = driver.getWindowHandle();
         String newTabHandle = driver.getWindowHandles()
                 .stream()
