@@ -6,14 +6,13 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.CategoryPage;
 import pages.HomePage;
-import pages.ProductPage;
 import pages.ProductCategoryPage;
+import pages.ProductPage;
 
-import java.util.Collections;
 import java.util.List;
 
 
-public class TestFilter extends BaseTest{
+public class TestFilter extends BaseTest {
     HomePage homePage;
     ProductCategoryPage productCategoryPage;
     CategoryPage categoryPage;
@@ -25,7 +24,7 @@ public class TestFilter extends BaseTest{
     }
 
     @BeforeTest()
-    public void setup(){
+    public void setup() {
         homePage = new HomePage(driver);
         productCategoryPage = new ProductCategoryPage(driver);
         categoryPage = new CategoryPage(driver);
@@ -39,7 +38,7 @@ public class TestFilter extends BaseTest{
 
     @Test
     @Description("Select the first product on the filter and check the compliance by name")
-    public void selectProductByName()  {
+    public void selectProductByName() {
         homePage.openHome().selectTypeMenu("Электроника");
         productCategoryPage.selectInnerCategory("Телевизоры");
         categoryPage.setPriceFrom("20000").selectBrand("Samsung").selectBrand("LG").clickToSnippetTitle();
@@ -49,11 +48,11 @@ public class TestFilter extends BaseTest{
 
     @Test
     @Description("Select the first product by filter and check the price match")
-    public void checkByNameAndPrice()  {
+    public void checkByNameAndPrice() {
         homePage.openHome().selectTypeMenu("Электроника");
         productCategoryPage.selectInnerCategory("Телевизоры");
         categoryPage.setPriceFrom("20000").selectBrand("Samsung").selectBrand("LG").clickToSnippetTitle();
-        List<Integer> prices = List.of(Integer.parseInt(productPage.getTextProductPrice().replaceAll(" ","").substring(5)));
+        List<Integer> prices = List.of(Integer.parseInt(productPage.getTextProductPrice().replaceAll(" ", "").substring(0, 5)));
         Assert.assertTrue(prices.stream().allMatch(price -> price > 20000 || price == 20000));
     }
 }

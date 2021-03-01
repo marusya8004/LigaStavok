@@ -8,7 +8,7 @@ public class BaseTest {
 
     public WebDriver driver;
 
-@BeforeTest
+    @BeforeTest
     public WebDriver setUp() {
         driver = getInstance().getDriver();
         return driver;

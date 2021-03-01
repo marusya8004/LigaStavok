@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.ByteArrayInputStream;
+
 @Slf4j
 
 public class CategoryPage extends PageObjectCreator {
@@ -49,7 +50,13 @@ public class CategoryPage extends PageObjectCreator {
         Actions action = new Actions(driver);
         action.moveToElement(titleList).build().perform();
         titleList.click();
-        driver.switchTo().window(String.valueOf(driver.getWindowHandles()));
+        String currTabHandle = driver.getWindowHandle();
+        String newTabHandle = driver.getWindowHandles()
+                .stream()
+                .filter(handle -> !handle.equals(currTabHandle))
+                .findFirst()
+                .get();
+        driver.switchTo().window(newTabHandle);
         Allure.addAttachment("SetPrice", new ByteArrayInputStream(((TakesScreenshot) driver)
                 .getScreenshotAs(OutputType.BYTES)));
     }
